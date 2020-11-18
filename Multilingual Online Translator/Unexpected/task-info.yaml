@@ -1,0 +1,255 @@
+type: edu
+custom_name: stage7
+files:
+- name: translator/translator.py
+  visible: true
+  text: |
+    print('Hello, World!')
+  learner_created: false
+- name: tests.py
+  visible: false
+  text: |
+    from hstest.stage_test import StageTest
+    from hstest.test_case import TestCase
+    from hstest.check_result import CheckResult
+
+    import sys
+    if sys.platform.startswith("win"):
+        import _locale
+        # pylint: disable=protected-access
+        _locale._getdefaultlocale = (lambda *args: ['en_US', 'utf8'])
+
+    CheckResult.correct = lambda: CheckResult(True, '')
+    CheckResult.wrong = lambda feedback: CheckResult(False, feedback)
+
+
+    class TranslatorTest(StageTest):
+        def generate(self):
+            return [
+                TestCase(args=['english', 'all', 'brrrrrrrrrrr'], check_function=self.check1),
+                TestCase(args=['english', 'korean', 'hello'], check_function=self.check2)
+            ]
+
+        def check1(self, reply, attach):
+            reply = reply.lower()
+            if 'unable' not in reply:
+                return CheckResult.wrong('You didn\'t do a test for a nonexistent word.')
+            return CheckResult.correct()
+
+        def check2(self, reply, attach):
+            if 'support korean' in reply.lower():
+                return CheckResult.correct()
+
+            return CheckResult.wrong(
+                'You didn\'t correctly write that your program doesn\'t support a particular language.')
+
+
+    if __name__ == '__main__':
+        TranslatorTest('translator.translator').run_tests()
+  learner_created: false
+- name: hello.txt
+  visible: true
+  text: |+
+    Arabic Translations:
+    مرحبا
+
+    Arabic Examples:
+    Well, hello, old-school racist.:
+    حسنا، مرحبا يا تلميذة المدرسة العنصريّة - الأمر يسري بدمهم!
+
+    German Translations:
+    hallo
+
+    German Examples:
+    Finally got a personalized hello from Earl.:
+    Ich habe endlich ein personifiziertes hallo von Earl bekommen.
+
+    Spanish Translations:
+    hola
+
+    Spanish Examples:
+    Well, hello, Miss Anchor-liar.:
+    Bien, hola, señorita presentadora de mentiras.
+
+    Arabic Translations:
+    مرحبا
+
+    Arabic Examples:
+    Well, hello, old-school racist.:
+    حسنا، مرحبا يا تلميذة المدرسة العنصريّة - الأمر يسري بدمهم!
+
+    German Translations:
+    hallo
+
+    German Examples:
+    Finally got a personalized hello from Earl.:
+    Ich habe endlich ein personifiziertes hallo von Earl bekommen.
+
+    Spanish Translations:
+    hola
+
+    Spanish Examples:
+    Well, hello, Miss Anchor-liar.:
+    Bien, hola, señorita presentadora de mentiras.
+
+    French Translations:
+    bonjour
+
+    French Examples:
+    Say goodbye to anti-aliasing and hello to naturally crisp graphics.:
+    Dites adieu à l'anti-crénelage et bonjour à des graphismes naturellement nets.
+
+    Hebrew Translations:
+    שלום
+
+    Hebrew Examples:
+    How come they never say hello?:
+    איך זה שהן אף פעם לא אומרות שלום.
+
+    Japanese Translations:
+    こんにちは
+
+    Japanese Examples:
+    The little boy said hello to me.:
+    小さな男の子が私にこんにちはと言った。
+
+    Dutch Translations:
+    dag
+
+    Dutch Examples:
+    Which in Hawaiian means hello and goodbye.:
+    Dat betekent hallo en tot ziens in het Hawaiiaans.
+
+    Polish Translations:
+    cześć
+
+    Polish Examples:
+    You had me at "hello".:
+    Wystarczyło mi twoje "cześć".
+
+    Portuguese Translations:
+    olá
+
+    Portuguese Examples:
+    That was my last kiss hello.:
+    Pois eu garanto que aquele foi o meu último beijo de olá.
+
+    Romanian Translations:
+    salut
+
+    Romanian Examples:
+    I came by to say hello.:
+    Am avut o pauză de masă și am trecut să te salut.
+
+    Russian Translations:
+    привет
+
+    Russian Examples:
+    Why, hello, there, Admiral.:
+    А, Адмирал, привет, что здесь делаешь.
+
+    Turkish Translations:
+    selam
+
+    Turkish Examples:
+    Say "hello" from Tito Spadola.:
+    Tito Spadola'dan, "selam" söyleyeceğim.
+
+    Arabic Translations:
+    مرحبا
+
+    Arabic Examples:
+    Well, hello, old-school racist.:
+    حسنا، مرحبا يا تلميذة المدرسة العنصريّة - الأمر يسري بدمهم!
+
+    German Translations:
+    hallo
+
+    German Examples:
+    Finally got a personalized hello from Earl.:
+    Ich habe endlich ein personifiziertes hallo von Earl bekommen.
+
+    Spanish Translations:
+    hola
+
+    Spanish Examples:
+    Well, hello, Miss Anchor-liar.:
+    Bien, hola, señorita presentadora de mentiras.
+
+    French Translations:
+    bonjour
+
+    French Examples:
+    Say goodbye to anti-aliasing and hello to naturally crisp graphics.:
+    Dites adieu à l'anti-crénelage et bonjour à des graphismes naturellement nets.
+
+    Hebrew Translations:
+    שלום
+
+    Hebrew Examples:
+    How come they never say hello?:
+    איך זה שהן אף פעם לא אומרות שלום.
+
+    Japanese Translations:
+    こんにちは
+
+    Japanese Examples:
+    The little boy said hello to me.:
+    小さな男の子が私にこんにちはと言った。
+
+    Dutch Translations:
+    dag
+
+    Dutch Examples:
+    Which in Hawaiian means hello and goodbye.:
+    Dat betekent hallo en tot ziens in het Hawaiiaans.
+
+    Polish Translations:
+    cześć
+
+    Polish Examples:
+    You had me at "hello".:
+    Wystarczyło mi twoje "cześć".
+
+    Portuguese Translations:
+    olá
+
+    Portuguese Examples:
+    That was my last kiss hello.:
+    Pois eu garanto que aquele foi o meu último beijo de olá.
+
+    Romanian Translations:
+    salut
+
+    Romanian Examples:
+    I came by to say hello.:
+    Am avut o pauză de masă și am trecut să te salut.
+
+    Russian Translations:
+    привет
+
+    Russian Examples:
+    Why, hello, there, Admiral.:
+    А, Адмирал, привет, что здесь делаешь.
+
+    Turkish Translations:
+    selam
+
+    Turkish Examples:
+    Say "hello" from Tito Spadola.:
+    Tito Spadola'dan, "selam" söyleyeceğim.
+
+  learner_created: true
+- name: brrrrrrrrrrr.txt
+  visible: true
+  learner_created: true
+- name: translator/__init__.py
+  visible: true
+  learner_created: true
+feedback_link: https://hyperskill.org/projects/99/stages/549/implement
+status: Solved
+feedback:
+  message: Congratulations! Continue on <a href="https://hyperskill.org/projects/99/stages/549/implement">JetBrains
+    Academy</a>
+  time: Wed, 18 Nov 2020 18:55:04 UTC
+record: -1
